@@ -121,10 +121,10 @@
     <value>About</value>
   </data>
   <data name="ActionWhenConversionSucceedDescription" xml:space="preserve">
-    <value>Allow you to choose what you want to do with your input files if the conversion succeed</value>
+    <value>Allows you to choose what to do with input files after a successful conversion</value>
   </data>
   <data name="ActionWhenConversionSucceedTitle" xml:space="preserve">
-    <value>Action when conversion succeed</value>
+    <value>After conversion, do this:</value>
   </data>
   <data name="AddNewPreset" xml:space="preserve">
     <value>New preset</value>
@@ -139,7 +139,7 @@
     <value>Automatically check for updates when File Converter starts</value>
   </data>
   <data name="AutomaticallyExitWhenAllConversionsFinished" xml:space="preserve">
-    <value>Automatically exit when all conversions finished</value>
+    <value>Automatically exit when all conversions are complete</value>
   </data>
   <data name="ClampToLowestPowerOfTwoSize" xml:space="preserve">
     <value>Clamp to lowest power of 2 size</value>
