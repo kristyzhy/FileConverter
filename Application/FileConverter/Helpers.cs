@@ -355,7 +355,8 @@ namespace FileConverter
         public enum HardwareAccelerationMode
         {
             Off,
-            CUDA
+            CUDA,
+            AMF
         }
     }
 }

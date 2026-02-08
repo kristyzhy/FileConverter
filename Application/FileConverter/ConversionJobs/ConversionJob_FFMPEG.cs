@@ -270,18 +270,41 @@ namespace FileConverter.ConversionJobs
                         }
 
                         string videoCodec = "libx264";
-                        string hwAccelArg = "";
-                        if (hwAccel == Helpers.HardwareAccelerationMode.CUDA)
+                        string videoCodecArgs = string.Format(
+                            "-preset {0} -crf {1}",
+                            this.H264EncodingSpeedToPreset(videoEncodingSpeed),
+                            this.H264QualityToCRF(videoEncodingQuality));
+                        string hwAccelArg = string.Empty;
+
+                        switch (hwAccel)
                         {
-                            videoCodec = "h264_nvenc";
-                            hwAccelArg = "-hwaccel cuda -hwaccel_output_format cuda";
+                            case Helpers.HardwareAccelerationMode.CUDA:
+                                videoCodec = "h264_nvenc";
+                                int nvencQP = this.H264QualityToCRF(videoEncodingQuality);
+                                videoCodecArgs = string.Format(
+                                    "-preset {0} -rc constqp -qp {1}",
+                                    this.H264EncodingSpeedToNVENCPreset(videoEncodingSpeed),
+                                    nvencQP);
+
+                                hwAccelArg = "-hwaccel cuda -hwaccel_output_format cuda";
+                                break;
+
+                            case Helpers.HardwareAccelerationMode.AMF:
+                                int amfQP = this.H264QualityToCRF(videoEncodingQuality);
+                                int amfBFrameQP = Math.Min(51, amfQP + 2);
+                                videoCodec = "h264_amf";
+                                videoCodecArgs = string.Format(
+                                    "-usage transcoding -quality {0} -qp_i {1} -qp_p {1} -qp_b {2}",
+                                    this.H264EncodingSpeedToAMFQuality(videoEncodingSpeed),
+                                    amfQP,
+                                    amfBFrameQP);
+                                break;
                         }
 
                         string encoderArgs = string.Format(
-                            "-c:v {0} -preset {1} -crf {2} {3} {4}",
+                            "-c:v {0} {1} {2} {3}",
                             videoCodec,
-                            this.H264EncodingSpeedToPreset(videoEncodingSpeed),
-                            this.H264QualityToCRF(videoEncodingQuality),
+                            videoCodecArgs,
                             audioArgs,
                             videoFilteringArgs);
 
