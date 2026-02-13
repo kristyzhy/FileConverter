@@ -64,7 +64,7 @@ Thanks to all the contributors of File Converter project.
 * Thanks to **iliamak** for the Russian localization.
 * Thanks to **itsmefdil** for the Indonesian localization.
 * Thanks to **hamzaharoon1314** for the Urdu localization.
-* Thanks to **Zyvrec7** for the Hungarian localization.
+* Thanks to **Zyvrec7** and **stohlferenc** for the Hungarian localization.
 * Thanks to **Maerek** and **MrPrince419** for the Polish localization.
 * Thanks to **rkalitta** for the Swedish localization.
 
